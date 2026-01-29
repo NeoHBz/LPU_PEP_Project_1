@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Group-11 | CI for Static Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-slate-950 text-slate-100 overflow-x-hidden">
+    <canvas id="bg"></canvas>
+
+    <main class="min-h-screen flex items-center justify-center px-6">
+      <div class="max-w-3xl">
+        <h1
+          class="text-4xl md:text-5xl font-bold tracking-tight opacity-0 translate-y-6 animate-[fadeUp_0.8s_ease-out_forwards]"
+        >
+          Group-11 <br /><span class="text-indigo-400">CI for Static Website</span>
+        </h1>
+
+        <p
+          class="mt-6 text-lg text-slate-300 opacity-0 translate-y-6 animate-[fadeUp_0.8s_ease-out_0.15s_forwards]"
+        >
+          Automate build and validation for a static website using GitHub Actions.
+        </p>
+
+        <section
+          class="mt-10 opacity-0 translate-y-6 animate-[fadeUp_0.8s_ease-out_0.3s_forwards]"
+        >
+          <h2 class="text-xl font-semibold mb-4">What this repo does</h2>
+          <ul class="space-y-2 text-slate-300 list-disc list-inside">
+            <li>Hosts a simple static website</li>
+            <li>Runs CI checks on every push and pull request</li>
+            <li>Validates HTML and runs lint tools</li>
+            <li>Ensures consistent quality before changes merge</li>
+          </ul>
+        </section>
+
+        <section
+          class="mt-8 opacity-0 translate-y-6 animate-[fadeUp_0.8s_ease-out_0.45s_forwards]"
+        >
+          <h2 class="text-xl font-semibold mb-4">Outcome</h2>
+          <p class="text-slate-300">
+            GitHub Actions triggers a workflow on each update to validate HTML and run
+            lint checks, ensuring the website code stays correct and high quality on every
+            commit.
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      const canvas = document.getElementById("bg");
+      const ctx = canvas.getContext("2d");
+
+      let w, h;
+      const particles = [];
+
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      }
+
+      window.addEventListener("resize", resize);
+      resize();
+
+      for (let i = 0; i < 80; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 2 + 0.5,
+          dx: (Math.random() - 0.5) * 0.4,
+          dy: (Math.random() - 0.5) * 0.4,
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+
+        for (const p of particles) {
+          p.x += p.dx;
+          p.y += p.dy;
+
+          if (p.x < 0 || p.x > w) p.dx *= -1;
+          if (p.y < 0 || p.y > h) p.dy *= -1;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(99, 102, 241, 0.8)";
+          ctx.fill();
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      draw();
+    </script>
+  </body>
+
+  <style>
+    canvas {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</html>
