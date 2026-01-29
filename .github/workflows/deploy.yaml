@@ -19,6 +19,11 @@ jobs:
           mkdir -p dist
           cp src/index.html dist/
 
+      - name: Validate HTML
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+        with:
+          root: dist
+
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
