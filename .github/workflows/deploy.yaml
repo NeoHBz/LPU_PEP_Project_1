@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   deploy:
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
@@ -19,10 +19,12 @@ jobs:
           mkdir -p dist
           cp src/index.html dist/
 
-      - name: Validate HTML
-        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+      - uses: actions/setup-node@v4
         with:
-          root: dist
+          node-version: "20"
+
+      - name: Validate HTML
+        run: npx --yes htmlhint dist/index.html
 
       - uses: actions/configure-pages@v5
 
