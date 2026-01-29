@@ -6,6 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      canvas {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+      }
+
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
   </head>
   <body class="bg-slate-950 text-slate-100 overflow-x-hidden">
     <canvas id="bg"></canvas>
@@ -96,19 +110,4 @@
       draw();
     </script>
   </body>
-
-  <style>
-    canvas {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-    }
-
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
 </html>
